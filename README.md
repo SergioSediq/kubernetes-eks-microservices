@@ -282,55 +282,34 @@ terraform destroy
 
 ```
 kubernetes-eks-microservices/
-├── terraform/
-│   ├── modules/              # Reusable Terraform modules
-│   │   ├── eks-cluster/      # EKS cluster configuration
-│   │   ├── networking/       # VPC, subnets
-│   │   ├── databases/        # RDS, DocumentDB, ElastiCache
-│   │   └── monitoring/       # CloudWatch, Container Insights
-│   └── environments/         # Environment-specific configs
-│       ├── dev/
-│       ├── staging/
-│       └── prod/
-├── microservices/            # Microservice applications
-│   ├── api-gateway/
-│   │   ├── src/
-│   │   ├── Dockerfile
-│   │   └── package.json
-│   ├── user-service/
-│   │   ├── src/
-│   │   ├── Dockerfile
-│   │   └── requirements.txt
-│   ├── order-service/
-│   │   ├── src/
-│   │   ├── Dockerfile
-│   │   └── requirements.txt
-│   └── product-service/
-│       ├── src/
-│       ├── Dockerfile
-│       └── package.json
-├── helm/                     # Helm charts
-│   ├── api-gateway/
-│   │   ├── Chart.yaml
-│   │   ├── values.yaml
-│   │   ├── values-dev.yaml
-│   │   ├── values-prod.yaml
-│   │   └── templates/        # K8s manifests
-│   ├── user-service/
-│   ├── order-service/
-│   └── product-service/
-├── kubernetes/               # Base Kubernetes manifests (optional)
-│   ├── base/
-│   └── overlays/
-├── .github/workflows/        # CI/CD pipelines
-│   ├── build-and-deploy.yml
-│   └── helm-lint.yml
-├── scripts/                  # Utility scripts
-│   ├── deploy.sh
-│   └── setup-eks.sh
-└── docs/                     # Documentation
-    ├── architecture.md
-    └── runbook.md
+├── terraform/                    # Infrastructure as Code
+│   ├── modules/                  # Reusable Terraform modules
+│   │   ├── vpc/                 # VPC with 3 AZs
+│   │   ├── eks/                 # EKS cluster and node groups
+│   │   ├── rds/                 # PostgreSQL database
+│   │   ├── documentdb/          # MongoDB (DocumentDB)
+│   │   ├── redis/               # ElastiCache Redis
+│   │   ├── security-groups/     # Security group configurations
+│   │   ├── alb-ingress/         # ALB Ingress Controller
+│   │   └── container-insights/  # CloudWatch Container Insights
+│   ├── main.tf                  # Main Terraform configuration
+│   ├── variables.tf             # Variable definitions
+│   └── outputs.tf               # Output values
+├── microservices/               # Microservice applications
+│   ├── api-gateway/            # API Gateway service
+│   ├── user-service/           # User management service
+│   ├── order-service/          # Order processing service
+│   └── product-service/        # Product catalog service
+├── helm/                        # Helm charts
+│   ├── api-gateway/            # API Gateway Helm chart
+│   ├── user-service/           # User service Helm chart
+│   ├── order-service/          # Order service Helm chart
+│   └── product-service/        # Product service Helm chart
+├── .github/workflows/
+│   └── ci-cd.yml               # Complete CI/CD pipeline
+├── README.md                    # Project documentation
+├── .gitignore                   # Git ignore rules
+└── LICENSE                      # MIT License
 ```
 
 ---
