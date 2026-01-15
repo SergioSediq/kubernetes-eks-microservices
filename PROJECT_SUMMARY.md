@@ -1,4 +1,4 @@
-# Kubernetes Microservices Platform - Project Summary
+# Kubernetes Microservices Platform 
 
 ## Why Microservices on Kubernetes?
 
